@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>جواب لحبيبتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#2b0a22; --bg2:#4a1236; --rose:#f3c6cf; --gold:#e0b877; --paper:#fff7f2; --ink:#4a1d33; --wine:#8c2a52;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"]{ color-scheme:dark; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ color-scheme:dark; } }
+html{ scroll-padding-top:env(safe-area-inset-top,0px); }
+*{ box-sizing:border-box; }
+body{
+  margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:radial-gradient(ellipse at 50% 0%, var(--bg2), var(--bg1) 70%) var(--bg1);
+  color:var(--rose); font-family:'Amiri',serif; overflow-x:hidden; padding:24px 16px;
+}
+.stage{ text-align:center; width:100%; max-width:420px; }
+h1{ font-family:'Aref Ruqaa',serif; font-size:clamp(2rem,8vw,2.8rem); margin:0 0 6px; color:var(--gold); font-weight:700; }
+.hint{ margin:0 0 36px; font-size:1.15rem; opacity:.85; }
+
+.env{ position:relative; width:min(86vw,320px); height:min(57vw,214px); margin:0 auto; cursor:pointer; border:0; background:none; padding:0;
+  transition:transform .8s ease, opacity .8s ease; display:block; }
+.env:focus-visible{ outline:3px solid var(--gold); outline-offset:8px; border-radius:6px; }
+.env .back{ position:absolute; inset:0; background:#b8486f; border-radius:6px; box-shadow:0 20px 40px rgba(0,0,0,.45); }
+.env .pocket{ position:absolute; inset:0; border-radius:6px; background:
+  linear-gradient(to bottom right, transparent 49.5%, #d36a8d 50%) left/50% 100% no-repeat,
+  linear-gradient(to bottom left, transparent 49.5%, #c85a80 50%) right/50% 100% no-repeat; z-index:3; }
+.env .flap{ position:absolute; top:0; left:0; right:0; height:58%; background:#e07a9b; z-index:4;
+  clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:top; transition:transform .7s ease, z-index 0s .35s; }
+.env .seal{ position:absolute; top:44%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; z-index:5; border-radius:50%;
+  background:var(--gold); color:var(--wine); display:grid; place-items:center; font-size:22px; box-shadow:0 3px 8px rgba(0,0,0,.35);
+  animation:beat 1.6s ease-in-out infinite; transition:opacity .3s; }
+@keyframes beat{ 50%{ transform:scale(1.14); } }
+.env .peek{ position:absolute; left:8%; right:8%; top:8%; bottom:10%; background:var(--paper); border-radius:4px; z-index:2; transition:transform .8s ease .35s; }
+.env.open .flap{ transform:rotateX(180deg); z-index:1; }
+.env.open .seal{ opacity:0; animation:none; }
+.env.open .peek{ transform:translateY(-38%); }
+.env.gone{ transform:translateY(60px); opacity:0; pointer-events:none; position:absolute; }
+
+.letter{ display:none; width:100%; max-width:480px; background:var(--paper); color:var(--ink); border-radius:8px;
+  padding:34px 28px 30px; text-align:right; box-shadow:0 24px 60px rgba(0,0,0,.5); border-top:6px solid var(--gold); }
+.letter.show{ display:block; animation:rise .9s ease both; }
+@keyframes rise{ from{ opacity:0; transform:translateY(40px) scale(.96);} to{ opacity:1; transform:none; } }
+.letter h2{ font-family:'Aref Ruqaa',serif; color:var(--wine); font-size:1.9rem; margin:0 0 16px; }
+.letter p{ font-size:1.28rem; line-height:2; margin:0 0 12px; }
+.letter .sign{ margin-top:22px; font-family:'Aref Ruqaa',serif; font-size:1.5rem; color:var(--wine); text-align:left; }
+.again{ margin-top:22px; background:none; border:1px solid var(--gold); color:var(--gold); font:inherit; font-size:1.1rem; padding:8px 22px; border-radius:999px; cursor:pointer; display:none; }
+.again.show{ display:inline-block; }
+.again:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition-duration:.01s !important; } }
+</style>
+</head>
+<body>
+<main class="stage">
+  <h1 id="title">جواب ليكي يا حبيبتي</h1>
+  <p class="hint" id="hint">دوسي على الجواب عشان تفتحيه</p>
+
+  <button class="env" id="env" aria-label="افتحي الجواب">
+    <span class="back"></span>
+    <span class="peek"></span>
+    <span class="pocket"></span>
+    <span class="flap"></span>
+    <span class="seal">❤</span>
+  </button>
+
+  <article class="letter" id="letter">
+    <h2>كل سنة وانتي طيبة يا قلبي</h2>
+    <p>النهارده مش يوم عادي، النهارده اليوم اللي جت فيه أحلى حاجة في حياتي للدنيا.</p>
+    <p>من ساعة ما دخلتي حياتي والدنيا بقت أهدى وأحلى وأقرب للقلب. بحب ضحكتك، وبحب طيبتك، وبحب إنك بتخليني أبقى نسخة أحسن من نفسي.</p>
+    <p>نفسي السنة دي تحققي فيها كل اللي بتحلمي بيه، وأكون جنبك في كل خطوة، في الفرحة قبل التعب.</p>
+    <p>وعد مني أفضل جنبك وأحبك أكتر كل يوم، لحد ما نكمل حياتنا سوا إن شاء الله.</p>
+    <p>كل سنة وانتي حبيبتي وأجمل حاجة حصلتلي.</p>
+    <div class="sign">بحبك، خطيبك ❤</div>
+  </article>
+  <button class="again" id="again">اقفلي الجواب</button>
+</main>
+<script>
+const env=document.getElementById('env'), letter=document.getElementById('letter'),
+      hint=document.getElementById('hint'), again=document.getElementById('again');
+env.addEventListener('click',()=>{
+  if(env.classList.contains('open')) return;
+  env.classList.add('open'); hint.style.visibility='hidden';
+  setTimeout(()=>{ env.classList.add('gone'); letter.classList.add('show'); again.classList.add('show'); },1500);
+});
+again.addEventListener('click',()=>{
+  letter.classList.remove('show'); again.classList.remove('show');
+  env.classList.remove('gone','open'); hint.style.visibility='visible';
+});
+</script>
+</body>
+</html>
